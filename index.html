@@ -1,0 +1,609 @@
+<!--Website remake of Instagram feed made by Sye0001 on Github | Fully open source on github profile | Tailwind CSS-->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <style>
+      .side-nav {
+        border-right: rgba(201, 201, 201, 0.247) 1px solid;
+      }
+
+      .btn:hover #link {
+        opacity: 1;
+      }
+
+      .story,
+      .story-content {
+        height: 100px;
+        /* Adjust the height as needed */
+      }
+
+      .story .img {
+        width: 66px;
+        /* Adjust the size of the container to accommodate the padding */
+        height: 66px;
+        /* Adjust the size of the container to accommodate the padding */
+        border-radius: 50%;
+        background: #f09433;
+        background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+        padding: 2px;
+        /* Adjust the padding to create space between the border and the image */
+        box-sizing: content-box;
+        /* Ensures padding is included in the width and height */
+      }
+
+      .story .img img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        background: white;
+        /* Set a white background to create the appearance of space */
+      }
+
+      ::-webkit-scrollbar {
+    width: 4px; /* Set the width of the scrollbar */
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1d1c1c00; /* Set the color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #111111; /* Set the color of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(34, 34, 34); /* Set the color of the thumb on hover */
+}
+      
+    </style>
+  </head>
+  <body class="bg-black">
+    <div class="container flex  mx-auto">
+        <!--NAVBAR-->
+      <div class="side-nav fixed top-0 md:left-0 lg:w-[15rem] h-screen bg-black hidden  md:flex">
+        <nav class="py-9">
+          <div class="title px-5 hidden lg:flex">
+            <div class="text-white x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s x1q0g3np xqjyukv x6s0dn4 x1oa3qoh x1nhvcw1">
+              <div class="_aagx">
+                <svg aria-label="Instagram" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="29" role="img" viewBox="32 4 113 32" width="103">
+                  <title>Instagram</title>
+                  <path clip-rule="evenodd" d="M37.82 4.11c-2.32.97-4.86 3.7-5.66 7.13-1.02 4.34 3.21 6.17 3.56 5.57.4-.7-.76-.94-1-3.2-.3-2.9 1.05-6.16 2.75-7.58.32-.27.3.1.3.78l-.06 14.46c0 3.1-.13 4.07-.36 5.04-.23.98-.6 1.64-.33 1.9.32.28 1.68-.4 2.46-1.5a8.13 8.13 0 0 0 1.33-4.58c.07-2.06.06-5.33.07-7.19 0-1.7.03-6.71-.03-9.72-.02-.74-2.07-1.51-3.03-1.1Zm82.13 14.48a9.42 9.42 0 0 1-.88 3.75c-.85 1.72-2.63 2.25-3.39-.22-.4-1.34-.43-3.59-.13-5.47.3-1.9 1.14-3.35 2.53-3.22 1.38.13 2.02 1.9 1.87 5.16ZM96.8 28.57c-.02 2.67-.44 5.01-1.34 5.7-1.29.96-3 .23-2.65-1.72.31-1.72 1.8-3.48 4-5.64l-.01 1.66Zm-.35-10a10.56 10.56 0 0 1-.88 3.77c-.85 1.72-2.64 2.25-3.39-.22-.5-1.69-.38-3.87-.13-5.25.33-1.78 1.12-3.44 2.53-3.44 1.38 0 2.06 1.5 1.87 5.14Zm-13.41-.02a9.54 9.54 0 0 1-.87 3.8c-.88 1.7-2.63 2.24-3.4-.23-.55-1.77-.36-4.2-.13-5.5.34-1.95 1.2-3.32 2.53-3.2 1.38.14 2.04 1.9 1.87 5.13Zm61.45 1.81c-.33 0-.49.35-.61.93-.44 2.02-.9 2.48-1.5 2.48-.66 0-1.26-1-1.42-3-.12-1.58-.1-4.48.06-7.37.03-.59-.14-1.17-1.73-1.75-.68-.25-1.68-.62-2.17.58a29.65 29.65 0 0 0-2.08 7.14c0 .06-.08.07-.1-.06-.07-.87-.26-2.46-.28-5.79 0-.65-.14-1.2-.86-1.65-.47-.3-1.88-.81-2.4-.2-.43.5-.94 1.87-1.47 3.48l-.74 2.2.01-4.88c0-.5-.34-.67-.45-.7a9.54 9.54 0 0 0-1.8-.37c-.48 0-.6.27-.6.67 0 .05-.08 4.65-.08 7.87v.46c-.27 1.48-1.14 3.49-2.09 3.49s-1.4-.84-1.4-4.68c0-2.24.07-3.21.1-4.83.02-.94.06-1.65.06-1.81-.01-.5-.87-.75-1.27-.85-.4-.09-.76-.13-1.03-.11-.4.02-.67.27-.67.62v.55a3.71 3.71 0 0 0-1.83-1.49c-1.44-.43-2.94-.05-4.07 1.53a9.31 9.31 0 0 0-1.66 4.73c-.16 1.5-.1 3.01.17 4.3-.33 1.44-.96 2.04-1.64 2.04-.99 0-1.7-1.62-1.62-4.4.06-1.84.42-3.13.82-4.99.17-.8.04-1.2-.31-1.6-.32-.37-1-.56-1.99-.33-.7.16-1.7.34-2.6.47 0 0 .05-.21.1-.6.23-2.03-1.98-1.87-2.69-1.22-.42.39-.7.84-.82 1.67-.17 1.3.9 1.91.9 1.91a22.22 22.22 0 0 1-3.4 7.23v-.7c-.01-3.36.03-6 .05-6.95.02-.94.06-1.63.06-1.8 0-.36-.22-.5-.66-.67-.4-.16-.86-.26-1.34-.3-.6-.05-.97.27-.96.65v.52a3.7 3.7 0 0 0-1.84-1.49c-1.44-.43-2.94-.05-4.07 1.53a10.1 10.1 0 0 0-1.66 4.72c-.15 1.57-.13 2.9.09 4.04-.23 1.13-.89 2.3-1.63 2.3-.95 0-1.5-.83-1.5-4.67 0-2.24.07-3.21.1-4.83.02-.94.06-1.65.06-1.81 0-.5-.87-.75-1.27-.85-.42-.1-.79-.13-1.06-.1-.37.02-.63.35-.63.6v.56a3.7 3.7 0 0 0-1.84-1.49c-1.44-.43-2.93-.04-4.07 1.53-.75 1.03-1.35 2.17-1.66 4.7a15.8 15.8 0 0 0-.12 2.04c-.3 1.81-1.61 3.9-2.68 3.9-.63 0-1.23-1.21-1.23-3.8 0-3.45.22-8.36.25-8.83l1.62-.03c.68 0 1.29.01 2.19-.04.45-.02.88-1.64.42-1.84-.21-.09-1.7-.17-2.3-.18-.5-.01-1.88-.11-1.88-.11s.13-3.26.16-3.6c.02-.3-.35-.44-.57-.53a7.77 7.77 0 0 0-1.53-.44c-.76-.15-1.1 0-1.17.64-.1.97-.15 3.82-.15 3.82-.56 0-2.47-.11-3.02-.11-.52 0-1.08 2.22-.36 2.25l3.2.09-.03 6.53v.47c-.53 2.73-2.37 4.2-2.37 4.2.4-1.8-.42-3.15-1.87-4.3-.54-.42-1.6-1.22-2.79-2.1 0 0 .69-.68 1.3-2.04.43-.96.45-2.06-.61-2.3-1.75-.41-3.2.87-3.63 2.25a2.61 2.61 0 0 0 .5 2.66l.15.19c-.4.76-.94 1.78-1.4 2.58-1.27 2.2-2.24 3.95-2.97 3.95-.58 0-.57-1.77-.57-3.43 0-1.43.1-3.58.19-5.8.03-.74-.34-1.16-.96-1.54a4.33 4.33 0 0 0-1.64-.69c-.7 0-2.7.1-4.6 5.57-.23.69-.7 1.94-.7 1.94l.04-6.57c0-.16-.08-.3-.27-.4a4.68 4.68 0 0 0-1.93-.54c-.36 0-.54.17-.54.5l-.07 10.3c0 .78.02 1.69.1 2.09.08.4.2.72.36.91.15.2.33.34.62.4.28.06 1.78.25 1.86-.32.1-.69.1-1.43.89-4.2 1.22-4.31 2.82-6.42 3.58-7.16.13-.14.28-.14.27.07l-.22 5.32c-.2 5.37.78 6.36 2.17 6.36 1.07 0 2.58-1.06 4.2-3.74l2.7-4.5 1.58 1.46c1.28 1.2 1.7 2.36 1.42 3.45-.21.83-1.02 1.7-2.44.86-.42-.25-.6-.44-1.01-.71-.23-.15-.57-.2-.78-.04-.53.4-.84.92-1.01 1.55-.17.61.45.94 1.09 1.22.55.25 1.74.47 2.5.5 2.94.1 5.3-1.42 6.94-5.34.3 3.38 1.55 5.3 3.72 5.3 1.45 0 2.91-1.88 3.55-3.72.18.75.45 1.4.8 1.96 1.68 2.65 4.93 2.07 6.56-.18.5-.69.58-.94.58-.94a3.07 3.07 0 0 0 2.94 2.87c1.1 0 2.23-.52 3.03-2.31.09.2.2.38.3.56 1.68 2.65 4.93 2.07 6.56-.18l.2-.28.05 1.4-1.5 1.37c-2.52 2.3-4.44 4.05-4.58 6.09-.18 2.6 1.93 3.56 3.53 3.69a4.5 4.5 0 0 0 4.04-2.11c.78-1.15 1.3-3.63 1.26-6.08l-.06-3.56a28.55 28.55 0 0 0 5.42-9.44s.93.01 1.92-.05c.32-.02.41.04.35.27-.07.28-1.25 4.84-.17 7.88.74 2.08 2.4 2.75 3.4 2.75 1.15 0 2.26-.87 2.85-2.17l.23.42c1.68 2.65 4.92 2.07 6.56-.18.37-.5.58-.94.58-.94.36 2.2 2.07 2.88 3.05 2.88 1.02 0 2-.42 2.78-2.28.03.82.08 1.49.16 1.7.05.13.34.3.56.37.93.34 1.88.18 2.24.11.24-.05.43-.25.46-.75.07-1.33.03-3.56.43-5.21.67-2.79 1.3-3.87 1.6-4.4.17-.3.36-.35.37-.03.01.64.04 2.52.3 5.05.2 1.86.46 2.96.65 3.3.57 1 1.27 1.05 1.83 1.05.36 0 1.12-.1 1.05-.73-.03-.31.02-2.22.7-4.96.43-1.79 1.15-3.4 1.41-4 .1-.21.15-.04.15 0-.06 1.22-.18 5.25.32 7.46.68 2.98 2.65 3.32 3.34 3.32 1.47 0 2.67-1.12 3.07-4.05.1-.7-.05-1.25-.48-1.25Z" fill="currentColor" fill-rule="evenodd"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="side-nav-content mt-10 px-3">
+            <div class="btn flex items-center gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer">
+              <svg aria-label="Home" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Home</title>
+                <path d="M22 23h-6.001a1 1 0 0 1-1-1v-5.455a2.997 2.997 0 1 0-5.993 0V22a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V11.543a1.002 1.002 0 0 1 .31-.724l10-9.543a1.001 1.001 0 0 1 1.38 0l10 9.543a1.002 1.002 0 0 1 .31.724V22a1 1 0 0 1-1 1Z"></path>
+              </svg>
+              <h2 class="text-white font-bold hidden lg:flex">Home</h2>
+            </div>
+            <div class="btn flex items-center gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2"">
+				<svg aria-label=" Search" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+              <title>Search</title>
+              <path d="M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="16.511" x2="22" y1="16.511" y2="22"></line>
+              </svg>
+              <h2 class="text-white hidden lg:flex">Search</h2>
+            </div>
+            <div class="btn flex items-center gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2"">
+				<svg aria-label=" Explore" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+              <title>Explore</title>
+              <polygon fill="none" points="13.941 13.953 7.581 16.424 10.06 10.056 16.42 7.585 13.941 13.953" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon>
+              <polygon fill-rule="evenodd" points="10.06 10.056 13.949 13.945 7.581 16.424 10.06 10.056"></polygon>
+              <circle cx="12.001" cy="12.005" fill="none" r="10.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
+              </svg>
+              <h2 class="text-white hidden lg:flex">Explore</h2>
+            </div>
+            <div class="btn flex items-center gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2"">
+				<svg aria-label=" Reels" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+              <title>Reels</title>
+              <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line>
+              <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="13.504" x2="16.362" y1="2.001" y2="7.002"></line>
+              <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="7.207" x2="10.002" y1="2.11" y2="7.002"></line>
+              <path d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              <path d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z" fill-rule="evenodd"></path>
+              </svg>
+              <h2 class="text-white hidden lg:flex">Reels</h2>
+            </div>
+            <div class="btn flex items-center gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2"">
+				<svg aria-label=" Messenger" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+              <title>Messenger</title>
+              <path d="M12.003 2.001a9.705 9.705 0 1 1 0 19.4 10.876 10.876 0 0 1-2.895-.384.798.798 0 0 0-.533.04l-1.984.876a.801.801 0 0 1-1.123-.708l-.054-1.78a.806.806 0 0 0-.27-.569 9.49 9.49 0 0 1-3.14-7.175 9.65 9.65 0 0 1 10-9.7Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.739"></path>
+              <path d="M17.79 10.132a.659.659 0 0 0-.962-.873l-2.556 2.05a.63.63 0 0 1-.758.002L11.06 9.47a1.576 1.576 0 0 0-2.277.42l-2.567 3.98a.659.659 0 0 0 .961.875l2.556-2.049a.63.63 0 0 1 .759-.002l2.452 1.84a1.576 1.576 0 0 0 2.278-.42Z" fill-rule="evenodd"></path>
+              </svg>
+              <h2 class="text-white hidden lg:flex">Messages</h2>
+            </div>
+            <div class="btn flex items-center gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2"">
+				<svg aria-label=" Notifications" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+              <title>Notifications</title>
+              <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
+              </svg>
+              <h2 class="text-white hidden lg:flex">Notifications</h2>
+            </div>
+            <div class="btn flex items-center gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2">
+              <svg aria-label="New post" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>New post</title>
+                <path d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="6.545" x2="17.455" y1="12.001" y2="12.001"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="12.003" x2="12.003" y1="6.545" y2="17.455"></line>
+              </svg>
+              <h2 class="text-white hidden lg:flex">Create</h2>
+            </div>
+            <div class="btn flex items-center gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2">
+              <img class="w-[24px] h-[24px] object-cover rounded-full" src="https://i.pinimg.com/736x/6e/01/05/6e01050d0a296bbaf5405131926cbbdd.jpg">
+              <h2 class="text-white hidden lg:flex">Profile</h2>
+            </div>
+          </div>
+          <div class="bottom-content fixed mb-6 bottom-0 px-5">
+            <div class="btn flex items-center w-[13rem] gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2">
+              <svg aria-label="" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 192 192" width="24">
+                <title></title>
+                <path class="xcslo1z" d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 126.084 65.4397 134.508 73.775 140.011C80.8224 144.663 89.899 146.938 99.3323 146.423C111.79 145.74 121.563 140.987 128.381 132.296C133.559 125.696 136.834 117.143 138.28 106.366C144.217 109.949 148.617 114.664 151.047 120.332C155.179 129.967 155.42 145.8 142.501 158.708C131.182 170.016 117.576 174.908 97.0135 175.059C74.2042 174.89 56.9538 167.575 45.7381 153.317C35.2355 139.966 29.8077 120.682 29.6052 96C29.8077 71.3178 35.2355 52.0336 45.7381 38.6827C56.9538 24.4249 74.2039 17.11 97.0132 16.9405C119.988 17.1113 137.539 24.4614 149.184 38.788C154.894 45.8136 159.199 54.6488 162.037 64.9503L178.184 60.6422C174.744 47.9622 169.331 37.0357 161.965 27.974C147.036 9.60668 125.202 0.195148 97.0695 0H96.9569C68.8816 0.19447 47.2921 9.6418 32.7883 28.0793C19.8819 44.4864 13.2244 67.3157 13.0007 95.9325L13 96L13.0007 96.0675C13.2244 124.684 19.8819 147.514 32.7883 163.921C47.2921 182.358 68.8816 191.806 96.9569 192H97.0695C122.03 191.827 139.624 185.292 154.118 170.811C173.081 151.866 172.51 128.119 166.26 113.541C161.776 103.087 153.227 94.5962 141.537 88.9883ZM98.4405 129.507C88.0005 130.095 77.1544 125.409 76.6196 115.372C76.2232 107.93 81.9158 99.626 99.0812 98.6368C101.047 98.5234 102.976 98.468 104.871 98.468C111.106 98.468 116.939 99.0737 122.242 100.233C120.264 124.935 108.662 128.946 98.4405 129.507Z"></path>
+              </svg>
+              <h2 class="text-white hidden lg:flex">Threads</h2>
+              <svg id="link" aria-label="" class="text-white opacity-0 hover:opacity-100 text-opacity-65 ml-auto x1lliihq x1n2onr6 x1cp0k07" fill="currentColor" height="16" role="img" viewBox="0 0 24 24" width="16">
+                <title></title>
+                <path d="M22 14a1 1 0 0 0-1 1v4a2.002 2.002 0 0 1-2 2H5a2.002 2.002 0 0 1-2-2V5a2.002 2.002 0 0 1 2-2h4a1 1 0 0 0 0-2H5a4.004 4.004 0 0 0-4 4v14a4.004 4.004 0 0 0 4 4h14a4.004 4.004 0 0 0 4-4v-4a1 1 0 0 0-1-1Zm0-13h-7a1 1 0 0 0 0 2h4.586L7.293 15.293a1 1 0 1 0 1.414 1.414L21 4.414V9a1 1 0 0 0 2 0V2a1 1 0 0 0-1-1Z"></path>
+              </svg>
+            </div>
+            <div class="btn flex items-center w-[13rem] gap-4 duration-200 ease-in-out hover:bg-[#1a1a1a] rounded-lg py-3 px-3 cursor-pointer mt-2">
+              <svg aria-label="Settings" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Settings</title>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="3" x2="21" y1="4" y2="4"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="3" x2="21" y1="12" y2="12"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="3" x2="21" y1="20" y2="20"></line>
+              </svg>
+              <h2 class="text-white hidden lg:flex">More</h2>
+            </div>
+          </div>
+        </nav>
+      </div>
+<!-- MOBILE NAVBAR -->
+<div class="fixed bottom-0 left-0 w-full bg-black md:hidden">
+    <nav class="flex justify-around py-3">
+        <a href="#" class="text-white flex flex-col items-center">
+            <svg aria-label="Home" class="text-white" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <!-- Home icon SVG code -->
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+            </svg>
+            <span class="text-xs hidden">Home</span>
+        </a>
+        <a href="#" class="text-white flex flex-col items-center">
+            <svg aria-label="Search" class="text-white" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <!-- Search icon SVG code -->
+                <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+            </svg>
+            <span class="text-xs hidden">Search</span>
+        </a>
+        <a href="#" class="text-white flex flex-col items-center">
+            <svg aria-label="New post" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>New post</title>
+                <path d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="6.545" x2="17.455" y1="12.001" y2="12.001"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="12.003" x2="12.003" y1="6.545" y2="17.455"></line>
+              </svg>
+            <span class="text-xs hidden">Explore</span>
+        </a>
+        <a href="#" class="text-white flex flex-col items-center">
+            <svg aria-label=" Reels" class="text-white x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Reels</title>
+                <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="2.049" x2="21.95" y1="7.002" y2="7.002"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="13.504" x2="16.362" y1="2.001" y2="7.002"></line>
+                <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="7.207" x2="10.002" y1="2.11" y2="7.002"></line>
+                <path d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                <path d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z" fill-rule="evenodd"></path>
+                </svg>
+            <span class="text-xs hidden">Reels</span>
+        </a>
+        <a href="#" class="text-white flex flex-col items-center">
+            <img class="w-[24px] h-[24px] object-cover rounded-full" src="https://i.pinimg.com/736x/6e/01/05/6e01050d0a296bbaf5405131926cbbdd.jpg">
+
+            <span class="text-xs hidden">Messages</span>
+        </a>
+    </nav>
+</div>
+
+      <!--MAIN CONTENT-->
+      <div class="main-content justify-center mx-auto">
+        <div class="story-content flex justify-center md:w-[40rem] w-[29rem] mx-auto pl-9 overflow-y-hidden overflow-x-scroll mt-7 gap-4">
+            
+          <div class="story">
+            <div class="img flex justify-center mx-auto items-center">
+              <img class=" object-cover w-[56px] h-[56px] rounded-full " src="https://i.pinimg.com/236x/d0/4c/cc/d04ccc9457b2dcb135d437bdfd259982.jpg">
+            </div>
+            <div class="username text-center mt-1">
+              <span class="text-white text-[12px]">Sye</span>
+            </div>
+          </div>
+          <div class="story">
+            <div class="img flex justify-center mx-auto items-center">
+              <img class="object-cover w-[56px] h-[56px] rounded-full" src="https://i.pinimg.com/236x/a7/f0/13/a7f013c4d0331a75fa630977f1055e87.jpg">
+            </div>
+            <div class="username text-center mt-1">
+              <span class="text-white text-[12px]">Lebron James</span>
+            </div>
+          </div>
+          <div class="story">
+            <div class="img flex justify-center mx-auto items-center">
+              <img class="object-cover w-[56px] h-[56px] rounded-full " src="https://i.pinimg.com/236x/76/aa/42/76aa4297ec1e626c5d80671b75715713.jpg">
+            </div>
+            <div class="username text-center mt-1">
+              <span class="text-white text-[12px]">999</span>
+            </div>
+          </div>
+          <div class="story">
+            <div class="img flex justify-center mx-auto items-center">
+              <img class="object-cover w-[56px] h-[56px] rounded-full " src="https://i.pinimg.com/236x/bb/85/46/bb85460f009f496767241a502923e76b.jpg">
+            </div>
+            <div class="username text-center mt-1">
+              <span class="text-white text-[12px]">okokok</span>
+            </div>
+          </div>
+          <div class="story">
+            <div class="img flex justify-center mx-auto items-center">
+              <img class="object-cover w-[56px] h-[56px] rounded-full " src="https://i.pinimg.com/236x/17/3a/00/173a008888e973ea51e6f5fa809d7972.jpg">
+            </div>
+            <div class="username text-center mt-1">
+              <span class="text-white text-[12px]">Bob</span>
+            </div>
+          </div>
+          <div class="story">
+            <div class="img flex justify-center mx-auto items-center">
+              <img class="object-cover w-[56px] h-[56px] rounded-full " src="https://i.pinimg.com/236x/83/c7/1e/83c71e352441f07f5cd0c9c56f6cf600.jpg">
+            </div>
+            <div class="username text-center mt-1">
+              <span class="text-white text-[12px]">Biden</span>
+            </div>
+          </div>
+          <div class="story">
+            <div class="img flex justify-center mx-auto items-center">
+              <img class="object-cover w-[56px] h-[56px] rounded-full " src="https://i.pinimg.com/236x/86/50/9b/86509b93c5c21b0007e22a7984829b1a.jpg">
+            </div>
+            <div class="username text-center mt-1">
+              <span class="text-white text-[12px]">John</span>
+            </div>
+          </div>
+          <div class="story">
+            <div class="img flex justify-center mx-auto items-center">
+              <img class="object-cover w-[56px] h-[56px] rounded-full " src="https://i.pinimg.com/474x/5b/b6/7b/5bb67bc00d35592ef619e902bb4fc7b0.jpg">
+            </div>
+            <div class="username text-center mt-1">
+              <span class="text-white text-[12px]">Trump</span>
+            </div>
+          </div>
+        </div>
+        
+        
+        
+        
+        
+        <div class="post-content mx-auto mt-7">
+            <div class="post md:mx-28 mt-5">
+            <div class="info mx-4 md:mx-0 flex items-center">
+              <div class="img">
+                <img class="object-cover w-[32px] h-[32px] rounded-full" src="https://i.pinimg.com/236x/8c/95/04/8c9504c0c0afaef522343028516d2128.jpg">
+              </div>
+              <div class="username ml-3 flex items-center gap-1">
+                <a class="text-white font-semibold text-[14px]">Sye</a>
+                <svg aria-label="Verified" class="x1lliihq x1n2onr6 mt-1" fill="rgb(0, 149, 246)" height="12" role="img" viewBox="0 0 40 40" width="12"><title>Verified</title><path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z" fill-rule="evenodd"></path></svg>
+              </div>
+              <div class="time flex text-white text-opacity-60 ml-2 text-[14px]">
+                <a>• 6d • <span class="text-[#0095f6]"> Follow</span>
+                </a>
+              </div>
+              <div class="end ml-auto items-center">
+                <svg aria-label="More options" class="text-white text-opacity-80 x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                  <title>More options</title>
+                  <circle cx="12" cy="12" r="1.5"></circle>
+                  <circle cx="6" cy="12" r="1.5"></circle>
+                  <circle cx="18" cy="12" r="1.5"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="post-img mt-4 object-cover">
+              <img class="w-full max-w-[458px] min-h-[350px] h-full max-h-[548px] object-cover md:rounded-md" src="https://i.pinimg.com/originals/cb/e4/33/cbe4332e76e97bed8123b7934cabc1f5.jpg">
+            </div>
+            <div class="info-container mx-4 md:mx-0 ">
+            <div class="post-data mt-4 flex items-center gap-3 ">
+              <svg aria-label="Like" class="text-white x1lliihq x1n2onr6 xyb1xck cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Like</title>
+                <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
+              </svg>
+              <svg aria-label="Comment" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Comment</title>
+                <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+              <svg aria-label="Share Post" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Share Post</title>
+                <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+              </svg>
+              <div class="end ml-auto">
+                <svg aria-label="Save" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                  <title>Save</title>
+                  <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+              </div>
+            </div>
+            <div class="likes mt-2 cursor-pointer">
+              <span class="text-white font-semibold text-[14px]">2,409 Likes</span>
+            </div>
+            <div class="comments cursor-pointer">
+              <span class="text-white font-semibold text-[14px]">Joseph</span>
+              <span class="text-white text-[14px] text-opacity-95">Hey! Cool photo</span>
+            </div>
+            <div class="view-more mt-1 text-white text-opacity-70 text-[13px] cursor-pointer">
+              <p class="">View all 152 comments</p>
+              <div class="comment flex items-center">
+                <p class="">Add a comment...</p>
+                <div class="right-emoji ml-auto">
+                  <svg aria-label="Emoji" class="text-white text-opacity-70 x1lliihq x1n2onr6 x1roi4f4" fill="currentColor" height="13" role="img" viewBox="0 0 24 24" width="13">
+                    <title>Emoji</title>
+                    <path d="M15.83 10.997a1.167 1.167 0 1 0 1.167 1.167 1.167 1.167 0 0 0-1.167-1.167Zm-6.5 1.167a1.167 1.167 0 1 0-1.166 1.167 1.167 1.167 0 0 0 1.166-1.167Zm5.163 3.24a3.406 3.406 0 0 1-4.982.007 1 1 0 1 0-1.557 1.256 5.397 5.397 0 0 0 8.09 0 1 1 0 0 0-1.55-1.263ZM12 .503a11.5 11.5 0 1 0 11.5 11.5A11.513 11.513 0 0 0 12 .503Zm0 21a9.5 9.5 0 1 1 9.5-9.5 9.51 9.51 0 0 1-9.5 9.5Z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <hr class="mt-6 opacity-20">
+          </div>
+            </div>
+
+
+
+
+
+
+
+
+          <div class="post md:mx-28 mt-5">
+            <div class="info mx-4 md:mx-0  flex items-center">
+              <div class="img">
+                <img class="object-cover w-[32px] h-[32px] rounded-full" src="https://i.pinimg.com/236x/8c/95/04/8c9504c0c0afaef522343028516d2128.jpg">
+              </div>
+              <div class="username ml-3">
+                <a class="text-white font-semibold text-[14px]">Jacob</a>
+              </div>
+              <div class="time flex text-white text-opacity-60 ml-2 text-[14px]">
+                <a>• 9d • <span class="text-[#0095f6]"> Follow</span>
+                </a>
+              </div>
+              <div class="end ml-auto items-center">
+                <svg aria-label="More options" class="text-white text-opacity-80 x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                  <title>More options</title>
+                  <circle cx="12" cy="12" r="1.5"></circle>
+                  <circle cx="6" cy="12" r="1.5"></circle>
+                  <circle cx="18" cy="12" r="1.5"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="post-img mt-4 object-cover">
+              <img class="w-full h-full min-h-[350px] max-w-[458px] max-h-[548px] object-cover md:rounded-md" src="https://i.pinimg.com/564x/47/d3/20/47d3201ac57238cfa15a30311f5a5eae.jpg">
+            </div>
+            <div class="info-container mx-4 md:mx-0 ">
+            <div class="post-data mt-4 flex items-center gap-3 ">
+              <svg aria-label="Like" class="text-white x1lliihq x1n2onr6 xyb1xck cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Like</title>
+                <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
+              </svg>
+              <svg aria-label="Comment" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Comment</title>
+                <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+              <svg aria-label="Share Post" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Share Post</title>
+                <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+              </svg>
+              <div class="end ml-auto">
+                <svg aria-label="Save" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                  <title>Save</title>
+                  <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+              </div>
+            </div>
+            <div class="likes mt-2 cursor-pointer">
+              <span class="text-white font-semibold text-[14px]">299,201 Likes</span>
+            </div>
+            <div class="comments cursor-pointer">
+              <span class="text-white font-semibold text-[14px]">Lord_coolio10</span>
+              <span class="text-white text-[14px] text-opacity-95">nice</span>
+            </div>
+            <div class="view-more mt-1 text-white text-opacity-70 text-[13px] cursor-pointer">
+              <p class="">View all 1,450 comments</p>
+              <div class="comment flex items-center">
+                <p class="">Add a comment...</p>
+                <div class="right-emoji ml-auto">
+                  <svg aria-label="Emoji" class="text-white text-opacity-70 x1lliihq x1n2onr6 x1roi4f4" fill="currentColor" height="13" role="img" viewBox="0 0 24 24" width="13">
+                    <title>Emoji</title>
+                    <path d="M15.83 10.997a1.167 1.167 0 1 0 1.167 1.167 1.167 1.167 0 0 0-1.167-1.167Zm-6.5 1.167a1.167 1.167 0 1 0-1.166 1.167 1.167 1.167 0 0 0 1.166-1.167Zm5.163 3.24a3.406 3.406 0 0 1-4.982.007 1 1 0 1 0-1.557 1.256 5.397 5.397 0 0 0 8.09 0 1 1 0 0 0-1.55-1.263ZM12 .503a11.5 11.5 0 1 0 11.5 11.5A11.513 11.513 0 0 0 12 .503Zm0 21a9.5 9.5 0 1 1 9.5-9.5 9.51 9.51 0 0 1-9.5 9.5Z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <hr class="mt-6 opacity-20">
+          </div>
+          </div>
+
+
+
+
+
+
+
+          <div class="post md:mx-28 mt-5">
+            <div class="info mx-4 md:mx-0  flex items-center">
+              <div class="img">
+                <img class="object-cover w-[32px] h-[32px] rounded-full" src="data:image/jpeg;base64,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">
+              </div>
+              <div class="username ml-3 flex items-center gap-1">
+                <a class="text-white font-semibold text-[14px]">Elon Musk</a>
+                <svg aria-label="Verified" class="x1lliihq x1n2onr6 mt-1" fill="rgb(0, 149, 246)" height="12" role="img" viewBox="0 0 40 40" width="12"><title>Verified</title><path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z" fill-rule="evenodd"></path></svg>
+              </div>
+              <div class="time flex text-white text-opacity-60 ml-2 text-[14px]">
+                <a>• 9d • <span class="text-[#0095f6]"> Follow</span>
+                </a>
+              </div>
+              <div class="end ml-auto items-center">
+                <svg aria-label="More options" class="text-white text-opacity-80 x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                  <title>More options</title>
+                  <circle cx="12" cy="12" r="1.5"></circle>
+                  <circle cx="6" cy="12" r="1.5"></circle>
+                  <circle cx="18" cy="12" r="1.5"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="post-img mt-4 object-cover">
+              <img class="w-full h-full min-h-[350px] max-w-[458px] max-h-[548px] object-cover md:rounded-md" src="https://cdn.mos.cms.futurecdn.net/8hBsu6KV4QMdTMkuZ6cRM.jpg">
+            </div>
+            <div class="info-container mx-4 md:mx-0 ">
+            <div class="post-data mt-4 flex items-center gap-3 ">
+              <svg aria-label="Like" class="text-white x1lliihq x1n2onr6 xyb1xck cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Like</title>
+                <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
+              </svg>
+              <svg aria-label="Comment" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Comment</title>
+                <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+              <svg aria-label="Share Post" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Share Post</title>
+                <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+              </svg>
+              <div class="end ml-auto">
+                <svg aria-label="Save" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                  <title>Save</title>
+                  <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+              </div>
+            </div>
+            <div class="likes mt-2 cursor-pointer">
+              <span class="text-white font-semibold text-[14px]">99,521 Likes</span>
+            </div>
+            <div class="comments cursor-pointer">
+              <span class="text-white font-semibold text-[14px]">Joe Rogan</span>
+              <span class="text-white text-[14px] text-opacity-95">I died bc of ur tesla</span>
+            </div>
+            <div class="view-more mt-1 text-white text-opacity-70 text-[13px] cursor-pointer">
+              <p class="">View all 4,199 comments</p>
+              <div class="comment flex items-center">
+                <p class="">Add a comment...</p>
+                <div class="right-emoji ml-auto">
+                  <svg aria-label="Emoji" class="text-white text-opacity-70 x1lliihq x1n2onr6 x1roi4f4" fill="currentColor" height="13" role="img" viewBox="0 0 24 24" width="13">
+                    <title>Emoji</title>
+                    <path d="M15.83 10.997a1.167 1.167 0 1 0 1.167 1.167 1.167 1.167 0 0 0-1.167-1.167Zm-6.5 1.167a1.167 1.167 0 1 0-1.166 1.167 1.167 1.167 0 0 0 1.166-1.167Zm5.163 3.24a3.406 3.406 0 0 1-4.982.007 1 1 0 1 0-1.557 1.256 5.397 5.397 0 0 0 8.09 0 1 1 0 0 0-1.55-1.263ZM12 .503a11.5 11.5 0 1 0 11.5 11.5A11.513 11.513 0 0 0 12 .503Zm0 21a9.5 9.5 0 1 1 9.5-9.5 9.51 9.51 0 0 1-9.5 9.5Z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <hr class="mt-6 opacity-20">
+          </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="post md:mx-28 mt-5">
+            <div class="info  mx-4 md:mx-0 flex items-center">
+              <div class="img">
+                <img class="object-cover w-[32px] h-[32px] rounded-full" src="https://i.pinimg.com/736x/55/8e/7e/558e7ee2aa1cfec31d9a3a792bfd7f00.jpg">
+              </div>
+              <div class="username ml-3">
+                <a class="text-white font-semibold text-[14px]">User_50492</a>
+              </div>
+              <div class="time flex text-white text-opacity-60 ml-2 text-[14px]">
+                <a>• 14d • <span class="text-[#0095f6]"> Follow</span>
+                </a>
+              </div>
+              <div class="end ml-auto items-center">
+                <svg aria-label="More options" class="text-white text-opacity-80 x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                  <title>More options</title>
+                  <circle cx="12" cy="12" r="1.5"></circle>
+                  <circle cx="6" cy="12" r="1.5"></circle>
+                  <circle cx="18" cy="12" r="1.5"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="post-img mt-4 object-cover">
+              <img class="w-full h-full min-h-[350px] max-w-[458px] max-h-[548px] object-cover md:rounded-md" src="https://i.pinimg.com/564x/c6/c6/fd/c6c6fde561bc7210e00b1cebaf73fe45.jpg">
+            </div>
+            <div class="info-container mx-4 md:mx-0 ">
+            <div class="post-data mt-4 flex items-center gap-3 ">
+              <svg aria-label="Like" class="text-white x1lliihq x1n2onr6 xyb1xck cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Like</title>
+                <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
+              </svg>
+              <svg aria-label="Comment" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Comment</title>
+                <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+              <svg aria-label="Share Post" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                <title>Share Post</title>
+                <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+              </svg>
+              <div class="end ml-auto">
+                <svg aria-label="Save" class="text-white x1lliihq x1n2onr6 x5n08af cursor-pointer" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+                  <title>Save</title>
+                  <polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+              </div>
+            </div>
+            <div class="likes mt-2 cursor-pointer">
+              <span class="text-white font-semibold text-[14px]">1.1M Likes</span>
+            </div>
+            <div class="comments cursor-pointer">
+              <span class="text-white font-semibold text-[14px]">Jacob_colby42</span>
+              <span class="text-white text-[14px] text-opacity-95">Wish I was there! 🐐</span>
+            </div>
+            <div class="view-more mt-1 text-white text-opacity-70 text-[13px] cursor-pointer">
+              <p class="">View all 102,922 comments</p>
+              <div class="comment flex items-center">
+                <p class="">Add a comment...</p>
+                <div class="right-emoji ml-auto">
+                  <svg aria-label="Emoji" class="text-white text-opacity-70 x1lliihq x1n2onr6 x1roi4f4" fill="currentColor" height="13" role="img" viewBox="0 0 24 24" width="13">
+                    <title>Emoji</title>
+                    <path d="M15.83 10.997a1.167 1.167 0 1 0 1.167 1.167 1.167 1.167 0 0 0-1.167-1.167Zm-6.5 1.167a1.167 1.167 0 1 0-1.166 1.167 1.167 1.167 0 0 0 1.166-1.167Zm5.163 3.24a3.406 3.406 0 0 1-4.982.007 1 1 0 1 0-1.557 1.256 5.397 5.397 0 0 0 8.09 0 1 1 0 0 0-1.55-1.263ZM12 .503a11.5 11.5 0 1 0 11.5 11.5A11.513 11.513 0 0 0 12 .503Zm0 21a9.5 9.5 0 1 1 9.5-9.5 9.51 9.51 0 0 1-9.5 9.5Z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <hr class="mt-6 opacity-20">
+          </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
